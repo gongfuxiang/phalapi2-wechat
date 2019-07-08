@@ -374,7 +374,7 @@ class Lite
         ];
 
         // 非APP有参数则使用使用openid
-        if(!in_array($this->trade_type, ['APP']) && !empty($this->params[]'openid'))
+        if(!in_array($this->trade_type, ['APP']) && !empty($this->params['openid']))
         {
             $this->pay_params['openid'] = $this->params['openid'];
         }
