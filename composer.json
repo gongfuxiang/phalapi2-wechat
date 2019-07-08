@@ -1,0 +1,24 @@
+{
+    "name": "shopxo/phalapi2-wechat",
+    "description": "微信支付",
+    "type": "library",
+    "keywords": [
+        "phalapi", "phalapi-wechat", "wechat", "微信支付", "支付"
+    ],
+    "license": "GPL-3.0+",
+    "minimum-stability": "dev",
+    "homepage": "http://gong.gg/",
+    "authors": [
+        {
+            "name": "Devil",
+            "email": "fuxiang.gong@qq.com",
+            "homepage": "http://gong.gg/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhalApi\\Alipay\\": "src"
+        }
+    } 
+}
