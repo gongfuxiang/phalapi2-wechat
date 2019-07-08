@@ -1,5 +1,5 @@
 <?php
-namespace PhalApi\Alipay;
+namespace PhalApi\Wechat;
 
 use PhalApi\Exception;
 
