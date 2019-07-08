@@ -14,7 +14,7 @@
 在/path/to/phalapi/config/di.php文件中，注册：  
 ```php
 $di->wechat = function() {
-    return new \PhalApi\Alipay\Lite();
+    return new \PhalApi\Wechat\Lite();
 };
 ```
 
