@@ -366,7 +366,7 @@ class Lite
             'nonce_str'         => md5(time().rand().$this->params['order_no']),
             'notify_url'        => $this->notify_url,
             'out_trade_no'      => $this->params['order_no'].$this->GetNumberCode(6),
-            'spbill_create_ip'  => $this->GetClientIP(),
+            'spbill_create_ip'  => \PhalApi\Tool::getClientIp(),
             'total_fee'         => intval($this->params['total_amount']*100),
             'trade_type'        => $this->trade_type,
             'attach'            => empty($this->params['attach']) ? $this->params['order_no'] : $this->params['attach'],
@@ -613,39 +613,6 @@ class Lite
             curl_close($ch);
             return "curl出错，错误码:$error";
         }
-    }
-
-    /**
-     * 客户端ip地址
-     * @author  Devil
-     * @blog    http://gong.gg/
-     * @version 1.0.0
-     * @date    2019-07-08
-     * @desc    description
-     * @param    [boolean]        $long [是否将ip转成整数]
-     * @return   [string|int]           [ip地址|ip地址整数]
-     */
-    private function GetClientIP($long = false)
-    {
-        $onlineip = ''; 
-        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown'))
-        { 
-            $onlineip = getenv('HTTP_CLIENT_IP'); 
-        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown'))
-        {
-            $onlineip = getenv('HTTP_X_FORWARDED_FOR'); 
-        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown'))
-        {
-            $onlineip = getenv('REMOTE_ADDR'); 
-        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown'))
-        {
-            $onlineip = $_SERVER['REMOTE_ADDR']; 
-        } 
-        if($long)
-        {
-            $onlineip = sprintf("%u", ip2long($onlineip));
-        }
-        return $onlineip;
     }
 }
 ?>
