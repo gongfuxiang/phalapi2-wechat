@@ -308,7 +308,7 @@ class Lite
         switch($this->params['client_type'])
         {
             case 'web' :
-                if(IsMobile())
+                if($this->IsMobile())
                 {
                     if($this->IsWeixinEnv())
                     {
@@ -367,7 +367,7 @@ class Lite
             'notify_url'        => $this->notify_url,
             'out_trade_no'      => $this->params['order_no'].$this->GetNumberCode(6),
             'spbill_create_ip'  => $this->GetClientIP(),
-            'total_fee'         => intval($params['total_amount']*100),
+            'total_fee'         => intval($this->params['total_amount']*100),
             'trade_type'        => $this->trade_type,
             'attach'            => empty($this->params['attach']) ? $this->params['order_no'] : $this->params['attach'],
             'sign_type'         => 'MD5',
