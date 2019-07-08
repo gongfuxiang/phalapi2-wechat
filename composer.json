@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "PhalApi\\Alipay\\": "src"
+            "PhalApi\\Wechat\\": "src"
         }
     } 
 }
