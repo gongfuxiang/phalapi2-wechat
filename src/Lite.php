@@ -395,12 +395,22 @@ class Lite
     public function Respond($params = [])
     {
         $result = empty($GLOBALS['HTTP_RAW_POST_DATA']) ? $this->XmlToArray(file_get_contents('php://input')) : $this->XmlToArray($GLOBALS['HTTP_RAW_POST_DATA']);
-
-        if(isset($result['result_code']) && $result['result_code'] == 'SUCCESS' && $result['sign'] == $this->GetSign($result))
+        if(empty($result))
         {
-            return $this->ReturnData($result);
+            throw new Exception('支付信息为空', 400);
         }
-        throw new Exception('处理异常错误', 400);
+
+        if(!isset($result['result_code']) || $result['result_code'] != 'SUCCESS')
+        {
+            throw new Exception('支付信息校验失败', 400);
+        }
+
+        if($result['sign'] != $this->GetSign($result))
+        {
+            throw new Exception('签名校验失败', 430);
+        }
+        
+        return $this->ReturnData($result);
     }
 
     /**
